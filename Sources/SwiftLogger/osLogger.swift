@@ -51,7 +51,7 @@ public class osLogger: LoggerType {
     line: Int
   ) {
     os_log(
-      "%@[%@->%@:%d] %@",
+      "%@[%@ -> %@:%d] %@",
       type: level.OSLogType(),
       level.emoji() as! CVarArg,
       className as! CVarArg,
