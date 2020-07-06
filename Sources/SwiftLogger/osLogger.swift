@@ -40,6 +40,11 @@ private extension LogLevel {
   }
 }
 
+extension OSLog {
+  private static var subsystem = Bundle.main.bundleIdentifier ?? "OS_LOGGER"
+  static let appLogger = OSLog(subsystem: subsystem, category: "AppLogger")
+}
+
 public class osLogger: LoggerType {
   public init() { }
 
@@ -53,6 +58,7 @@ public class osLogger: LoggerType {
   ) {
     os_log(
       "%@[%@ -> %@:%d] %@",
+      log: OSLog.appLogger,
       type: level.OSLogType(),
       level.emoji(),
       className,
