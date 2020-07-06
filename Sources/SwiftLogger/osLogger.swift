@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  osLogger.swift
 //
 //
 //  Created by Sergejs Smirnovs on 06/07/2020.
