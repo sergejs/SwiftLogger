@@ -51,7 +51,7 @@ public final class Logger: Loggable {
   }
 
   public func setupLogger(logger: LoggerType) {
-    assert(activeLogger == nil, "Changing logger is disallowed to maintain consistency")
+    guard activeLogger == nil else { return }
     activeLogger = logger
   }
 
