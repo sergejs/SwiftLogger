@@ -5,6 +5,7 @@
 //  Created by Sergejs Smirnovs on 06/07/2020.
 //
 
+import Foundation
 import os.log
 
 private extension LogLevel {
@@ -53,11 +54,11 @@ public class osLogger: LoggerType {
     os_log(
       "%@[%@ -> %@:%d] %@",
       type: level.OSLogType(),
-      level.emoji() as! CVarArg,
-      className as! CVarArg,
-      function as! CVarArg,
+      level.emoji(),
+      className,
+      function,
       line,
-      message as! CVarArg
+      message
     )
   }
 }

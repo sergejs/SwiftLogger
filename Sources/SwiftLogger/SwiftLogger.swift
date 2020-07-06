@@ -4,6 +4,7 @@
 //
 //  Created by Sergejs Smirnovs on 06/07/2020.
 //
+import Foundation
 
 public enum LogLevel {
   case `default`
@@ -15,9 +16,21 @@ public enum LogLevel {
 
 public protocol Loggable {
   func log(level: LogLevel, _ message: String, _ path: String, _ function: String, line: Int)
+  func allowLogging()
+  func disableLogging()
 }
 
 public extension Loggable {
+  func allowLogging() {
+    let className = String(describing: self)
+    Logger.sharedInstance.allowClass(className: className)
+  }
+
+  func disableLogging() {
+    let className = String(describing: self)
+    Logger.sharedInstance.ignoreClass(className: className)
+  }
+
   func log(
     level: LogLevel,
     _ message: String,
@@ -55,10 +68,12 @@ public final class Logger: Loggable {
     activeLogger = logger
   }
 
-  public func ignoreClass(type: AnyClass) {
-    let className = String(describing: type)
-
+  public func ignoreClass(className: String) {
     disabledSymbols.insert(className)
+  }
+
+  public func allowClass(className: String) {
+    disabledSymbols.remove(className)
   }
 
   public func log(
