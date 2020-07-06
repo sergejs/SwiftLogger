@@ -14,11 +14,11 @@ public enum LogLevel {
 }
 
 public protocol Loggable {
-  static func log(level: LogLevel, _ message: String, _ path: String, _ function: String, line: Int)
+  func log(level: LogLevel, _ message: String, _ path: String, _ function: String, line: Int)
 }
 
 public extension Loggable {
-  static func log(
+  func log(
     level: LogLevel,
     _ message: String,
     _ path: String = #file,
