@@ -36,32 +36,32 @@ public extension Loggable {
   }
 }
 
-protocol LoggerType {
+public protocol LoggerType {
   func log(level: LogLevel, className: String, message: String, _ path: String, _ function: String, line: Int)
 }
 
-final class Logger: Loggable {
+public final class Logger: Loggable {
   internal var activeLogger: LoggerType?
   internal var disabledSymbols = Set<String>()
-  private(set) static var sharedInstance = Logger()
+  private(set) public static var sharedInstance = Logger()
 
   /// Overrides shared instance, useful for testing
   static func setSharedInstance(logger: Logger) {
     sharedInstance = logger
   }
 
-  func setupLogger(logger: LoggerType) {
+  public func setupLogger(logger: LoggerType) {
     assert(activeLogger == nil, "Changing logger is disallowed to maintain consistency")
     activeLogger = logger
   }
 
-  func ignoreClass(type: AnyClass) {
+  public func ignoreClass(type: AnyClass) {
     let className = String(describing: type)
 
     disabledSymbols.insert(className)
   }
 
-  func log(
+  public func log(
     level: LogLevel,
     className: String,
     message: String,

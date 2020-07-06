@@ -40,7 +40,9 @@ private extension LogLevel {
 }
 
 public class osLogger: LoggerType {
-  func log(
+  public init() { }
+
+  public func log(
     level: LogLevel,
     className: String,
     message: String,
