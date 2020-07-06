@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  SwiftLogger.swift
 //
 //
 //  Created by Sergejs Smirnovs on 06/07/2020.
