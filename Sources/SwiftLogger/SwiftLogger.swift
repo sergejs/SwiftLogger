@@ -61,6 +61,12 @@ public final class Logger: Loggable {
     disabledSymbols.insert(className)
   }
 
+  public func allowClass(type: AnyClass) {
+    let className = String(describing: type)
+
+    disabledSymbols.remove(className)
+  }
+
   public func log(
     level: LogLevel,
     className: String,
