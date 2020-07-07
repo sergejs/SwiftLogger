@@ -15,7 +15,7 @@ public enum LogLevel {
 }
 
 public protocol Loggable {
-  func log(level: LogLevel, _ message: String, _ path: String, _ function: String, line: Int)
+  func log(level: LogLevel, _ message: @autoclosure () -> String, _ path: String, _ function: String, line: Int)
   func allowLogging()
   func disableLogging()
 }
@@ -33,7 +33,7 @@ public extension Loggable {
 
   func log(
     level: LogLevel,
-    _ message: String,
+    _ message: @autoclosure () -> String,
     _ path: String = #file,
     _ function: String = #function,
     line: Int = #line
@@ -42,20 +42,20 @@ public extension Loggable {
     Logger.sharedInstance.log(
       level: level,
       className: className,
-      message: message,
+      message: message(),
       path, function,
       line: line
     )
   }
   
   func logDefault(
-    _ message: String,
+    _ message: @autoclosure () -> String,
     _ path: String = #file,
     _ function: String = #function,
     line: Int = #line
   ) {
     log(level: .default,
-        message,
+        message(),
         path,
         function,
         line: line
@@ -63,13 +63,13 @@ public extension Loggable {
   }
   
   func logInfo(
-    _ message: String,
+    _ message: @autoclosure () -> String,
     _ path: String = #file,
     _ function: String = #function,
     line: Int = #line
   ) {
     log(level: .info,
-        message,
+        message(),
         path,
         function,
         line: line
@@ -77,13 +77,13 @@ public extension Loggable {
   }
   
   func logDebug(
-    _ message: String,
+    _ message: @autoclosure () -> String,
     _ path: String = #file,
     _ function: String = #function,
     line: Int = #line
   ) {
     log(level: .debug,
-        message,
+        message(),
         path,
         function,
         line: line
@@ -91,13 +91,13 @@ public extension Loggable {
   }
   
   func logError(
-    _ message: String,
+    _ message: @autoclosure () -> String,
     _ path: String = #file,
     _ function: String = #function,
     line: Int = #line
   ) {
     log(level: .error,
-        message,
+        message(),
         path,
         function,
         line: line
@@ -105,13 +105,13 @@ public extension Loggable {
   }
   
   func logFault(
-    _ message: String,
+    _ message: @autoclosure () -> String,
     _ path: String = #file,
     _ function: String = #function,
     line: Int = #line
   ) {
     log(level: .fault,
-        message,
+        message(),
         path,
         function,
         line: line
@@ -120,10 +120,10 @@ public extension Loggable {
 }
 
 public protocol LoggerType {
-  func log(level: LogLevel, className: String, message: String, _ path: String, _ function: String, line: Int)
+  func log(level: LogLevel, className: String, message: @autoclosure () -> String, _ path: String, _ function: String, line: Int)
 }
 
-public final class Logger: Loggable {
+public final class Logger {
   internal var activeLogger: LoggerType?
   internal var disabledSymbols = Set<String>()
   private(set) public static var sharedInstance = Logger()
@@ -149,7 +149,7 @@ public final class Logger: Loggable {
   public func log(
     level: LogLevel,
     className: String,
-    message: String,
+    message: @autoclosure () -> String,
     _ path: String,
     _ function: String,
     line: Int
@@ -158,7 +158,7 @@ public final class Logger: Loggable {
       logAllowed(className: className),
       let activeLogger = activeLogger
     else { return }
-    activeLogger.log(level: level, className: className, message: message, path, function, line: line)
+    activeLogger.log(level: level, className: className, message: message(), path, function, line: line)
   }
 
   private func logAllowed(className: String) -> Bool {
