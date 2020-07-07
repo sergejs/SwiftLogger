@@ -47,6 +47,76 @@ public extension Loggable {
       line: line
     )
   }
+  
+  func logDefault(
+    _ message: String,
+    _ path: String = #file,
+    _ function: String = #function,
+    line: Int = #line
+  ) {
+    log(level: .default,
+        message,
+        path,
+        function,
+        line: line
+    )
+  }
+  
+  func logInfo(
+    _ message: String,
+    _ path: String = #file,
+    _ function: String = #function,
+    line: Int = #line
+  ) {
+    log(level: .info,
+        message,
+        path,
+        function,
+        line: line
+    )
+  }
+  
+  func logDebug(
+    _ message: String,
+    _ path: String = #file,
+    _ function: String = #function,
+    line: Int = #line
+  ) {
+    log(level: .debug,
+        message,
+        path,
+        function,
+        line: line
+    )
+  }
+  
+  func logError(
+    _ message: String,
+    _ path: String = #file,
+    _ function: String = #function,
+    line: Int = #line
+  ) {
+    log(level: .error,
+        message,
+        path,
+        function,
+        line: line
+    )
+  }
+  
+  func logFault(
+    _ message: String,
+    _ path: String = #file,
+    _ function: String = #function,
+    line: Int = #line
+  ) {
+    log(level: .fault,
+        message,
+        path,
+        function,
+        line: line
+    )
+  }
 }
 
 public protocol LoggerType {
