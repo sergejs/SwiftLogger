@@ -51,7 +51,7 @@ public class osLogger: LoggerType {
   public func log(
     level: LogLevel,
     className: String,
-    message: String,
+    message: @autoclosure () -> String,
     _ path: String,
     _ function: String,
     line: Int
@@ -64,7 +64,7 @@ public class osLogger: LoggerType {
       className,
       function,
       line,
-      message
+      message()
     )
   }
 }
