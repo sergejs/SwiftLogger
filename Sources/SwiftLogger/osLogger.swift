@@ -23,7 +23,7 @@ private extension LogLevel {
         return .fault
     }
   }
-  
+
   func emoji() -> String {
     switch self {
       case .default:
@@ -46,7 +46,7 @@ extension OSLog {
 }
 
 public class osLogger: LoggerType {
-  public init() { }
+  public init() {}
 
   public func log(
     level: LogLevel,

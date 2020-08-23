@@ -7,7 +7,8 @@
 --closingparen balanced
 --specifierorder public,override
 
+--enable redundantBreak, elseOnSameLine, duplicateImports, emptyBraces, isEmpty,redundantExtensionACL,redundantFileprivate,redundantGet,redundantLet,redundantReturn,todos,trailingCommas
 
---disable unusedArguments
+--disable unusedArguments, wrapMultilineStatementBraces
 
---exclude Pods, Libs
+--exclude Pods, Libs, Generated, vendor
