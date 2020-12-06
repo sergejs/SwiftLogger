@@ -3,7 +3,7 @@
 Easy logger, just import, add protocol, use it!
 
 
-```
+```swift
 import SwiftLogger
 ...
 class ClassnName: Loggable {
@@ -20,4 +20,5 @@ class ClassnName: Loggable {
 ## TODO:
 
 [ ] Add tags
+
 [ ] Implement more logging control 
