@@ -1,11 +1,11 @@
 opt_in_rules: # some rules are only opt-in
-  - atributes
+  - attributes
   - closure_spacing
   - explicit_init
   - first_where
   - operator_usage_whitespace
   - overridden_super_call
-  - redundant_nil_coalesing
+  - redundant_nil_coalescing
   - sorted_imports
 
 disabled_rules: # rule identifiers to exclude from running
